@@ -36,7 +36,10 @@ public class AdsShareUtils {
         if (!AdsMasterClass.getAdsDataModel().getQureka_url().isEmpty()) {
             CustomTabsIntent build = new CustomTabsIntent.Builder().build();
             build.intent.setPackage("com.android.chrome");
-            build.launchUrl(activity, Uri.parse(AdsMasterClass.getAdsDataModel().getQureka_url()));
+            String[] urls = AdsMasterClass.getAdsDataModel().getQureka_url().split("\\|");
+            for (String url : urls) {
+                build.launchUrl(activity, Uri.parse(url.trim()));
+            }
         }
     }
 

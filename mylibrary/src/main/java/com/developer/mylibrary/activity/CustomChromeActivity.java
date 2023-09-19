@@ -20,7 +20,10 @@ public class CustomChromeActivity extends AppCompatActivity {
         try {
             CustomTabsIntent build = new CustomTabsIntent.Builder().build();
             build.intent.setPackage("com.android.chrome");
-            build.launchUrl(this, Uri.parse(AdsMasterClass.getAdsDataModel().getQureka_url()));
+            String[] urls = AdsMasterClass.getAdsDataModel().getQureka_url().split("\\|");
+            for (String url : urls) {
+                build.launchUrl(this, Uri.parse(url.trim()));
+            }
             isFinishActivity = false;
         } catch (Exception e) {
             isFinishActivity = true;

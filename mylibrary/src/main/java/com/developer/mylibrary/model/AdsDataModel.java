@@ -749,7 +749,7 @@ public class AdsDataModel {
     public static String getExtraFlagValue(String value) {
         if (value != null && value.trim().length() > 0) {
             String[] valuesArray = value.split("@");
-            return valuesArray[0].trim();
+            return valuesArray[1].trim();
         }
         return "";
     }

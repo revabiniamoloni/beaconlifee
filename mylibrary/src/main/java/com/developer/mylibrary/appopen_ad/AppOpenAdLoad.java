@@ -1,6 +1,6 @@
 package com.developer.mylibrary.appopen_ad;
 
-import static androidx.lifecycle.Lifecycle.Event.ON_START;
+import static androidx.lifecycle.Lifecycle.Event.ON_RESUME;
 
 import android.app.Activity;
 import android.app.Application;
@@ -66,8 +66,9 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
         loadAd(MyAdApplication.getMyApplication(), AdsMasterClass.getAdsDataModel().getApp_open_sequence());
     }
 
-    @OnLifecycleEvent(ON_START)
-    public void onStart() {
+    @OnLifecycleEvent(ON_RESUME)
+    public void onResume() {
+        AdsMasterClass.showAdTag(AdsLogTag.AppOpenAdLoad.name(), "loadGoogleAppOpen - ON_RESUME");
         showAdIfAvailable();
     }
 
@@ -208,6 +209,7 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
                     @Override
                     public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                         super.onAdFailedToShowFullScreenContent(adError);
+                        AdsMasterClass.showAdTag(AdsLogTag.AppOpenAdLoad.name(), "loadGoogleAppOpen - failed to show : " + adError);
                         AppOpenAdLoad.this.appOpenAd = null;
                         isShowingAd = false;
                     }

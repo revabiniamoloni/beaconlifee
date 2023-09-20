@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.1.0'
 
     //ads
-    implementation 'com.google.android.gms:play-services-ads:22.3.0'
+    implementation 'com.google.android.gms:play-services-ads:22.4.0'
     implementation 'com.facebook.android:audience-network-sdk:6.15.0'
     implementation 'com.facebook.infer.annotation:infer-annotation:0.18.0'
     implementation 'com.applovin:applovin-sdk:11.11.3'

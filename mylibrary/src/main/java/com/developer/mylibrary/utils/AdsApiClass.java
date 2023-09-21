@@ -361,6 +361,15 @@ public class AdsApiClass {
 
                         String extra_flag_g = ads_data.optString("extra_flag_g");
                         adsDataModel.setExtra_flag_g(extra_flag_g);
+
+                        String extra_flag_h = ads_data.optString("extra_flag_h");
+                        adsDataModel.setExtra_flag_h(extra_flag_h);
+
+                        String extra_flag_i = ads_data.optString("extra_flag_i");
+                        adsDataModel.setExtra_flag_i(extra_flag_i);
+
+                        String extra_flag_j = ads_data.optString("extra_flag_j");
+                        adsDataModel.setExtra_flag_j(extra_flag_j);
                     }
 
                     adsDataModel.setIs_appopen_fail_check(false);

@@ -96,6 +96,9 @@ public class AdsDataModel {
     private String extra_flag_e = "";
     private String extra_flag_f = "";
     private String extra_flag_g = "";
+    private String extra_flag_h = "";
+    private String extra_flag_i = "";
+    private String extra_flag_j = "";
 
     // ads variable
     private boolean is_appopen_fail_check;
@@ -744,6 +747,30 @@ public class AdsDataModel {
 
     public void setExtra_flag_g(String extra_flag_g) {
         this.extra_flag_g = extra_flag_g;
+    }
+
+    public String getExtra_flag_h() {
+        return getExtraFlagValue(extra_flag_h);
+    }
+
+    public void setExtra_flag_h(String extra_flag_h) {
+        this.extra_flag_h = extra_flag_h;
+    }
+
+    public String getExtra_flag_i() {
+        return getExtraFlagValue(extra_flag_i);
+    }
+
+    public void setExtra_flag_i(String extra_flag_i) {
+        this.extra_flag_i = extra_flag_i;
+    }
+
+    public String getExtra_flag_j() {
+        return getExtraFlagValue(extra_flag_j);
+    }
+
+    public void setExtra_flag_j(String extra_flag_j) {
+        this.extra_flag_j = extra_flag_j;
     }
 
     public static String getExtraFlagValue(String value) {

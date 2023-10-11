@@ -220,49 +220,41 @@ public class AdsMasterClass {
     // show banner
     public static void showBannerAd(Activity activity, LinearLayout linearLayout) {
         if (getBannerAdShowValue(activity)) {
-            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout);
+            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, false);
         }
     }
 
     public static void showExtraBannerAd(Activity activity, LinearLayout linearLayout) {
         if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
-            if (getBannerAdShowValue(activity)) {
-                BannerAdLoad.loadSequenceBannerAd(activity, linearLayout);
-            }
+            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, true);
         }
     }
 
     // show native
-    public static void showNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize, boolean showExtraNative) {
+    public static void showNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
         if (getNativeAdShowValue(activity)) {
-            if (showExtraNative) {
-                if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
-                    NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
-                }
-            } else {
-                NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
-            }
+            NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, false);
         }
     }
 
-    public static void showPreloadNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize, boolean showExtraNative) {
+    public static void showExtraNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
+        if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
+            NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, true);
+        }
+    }
+
+    public static void showPreloadNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
         if (getNativeAdShowValue(activity)) {
-            if (showExtraNative) {
-                if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
-                    NativeAdPreLoad.showPreloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, showExtraNative);
-                }
-            } else {
-                NativeAdPreLoad.showPreloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, showExtraNative);
-            }
+            NativeAdPreLoad.showPreloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
         }
     }
 
     public static void showListNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
-        NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
+        NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, false);
     }
 
     public static void showListPreloadNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
-        NativeAdPreLoad.showPreloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, false);
+        NativeAdPreLoad.showPreloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
     }
 
     // get ads value
@@ -469,6 +461,27 @@ public class AdsMasterClass {
         return "";
     }
 
+    public static String getNextExtraBannerAd(Activity activity) {
+        String adsSequence = getAdsDataModel().getBanner_show_sequence().trim();
+        String[] values = adsSequence.split("-");
+        if (values != null && values.length > 0) {
+            int pos = AdsPreference.getInt(activity, AdsConstant.ExtraBannerAdShowSeqPos, 0);
+            if (pos < values.length) {
+                String ad = values[pos];
+                int nextPos = pos + 1;
+                AdsPreference.putInt(activity, AdsConstant.ExtraBannerAdShowSeqPos, nextPos);
+                showAdTag(AdsLogTag.AdsMasterClass.name(), "getNextExtraBannerAd: " + ad);
+                return ad;
+            } else {
+                String ad = values[0];
+                AdsPreference.putInt(activity, AdsConstant.ExtraBannerAdShowSeqPos, 1);
+                showAdTag(AdsLogTag.AdsMasterClass.name(), "getNextExtraBannerAd: " + ad);
+                return ad;
+            }
+        }
+        return "";
+    }
+
     public static String getNextNativeAd(Activity activity) {
         String adsSequence = getAdsDataModel().getNative_show_sequence().trim();
         String[] values = adsSequence.split("-");
@@ -484,6 +497,27 @@ public class AdsMasterClass {
                 String ad = values[0];
                 AdsPreference.putInt(activity, AdsConstant.NativeAdShowSeqPos, 1);
                 showAdTag(AdsLogTag.AdsMasterClass.name(), "getNextNativeAd: " + ad);
+                return ad;
+            }
+        }
+        return "";
+    }
+
+    public static String getNextExtraNativeAd(Activity activity) {
+        String adsSequence = getAdsDataModel().getNative_show_sequence().trim();
+        String[] values = adsSequence.split("-");
+        if (values != null && values.length > 0) {
+            int pos = AdsPreference.getInt(activity, AdsConstant.ExtraNativeAdShowSeqPos, 0);
+            if (pos < values.length) {
+                String ad = values[pos];
+                int nextPos = pos + 1;
+                AdsPreference.putInt(activity, AdsConstant.ExtraNativeAdShowSeqPos, nextPos);
+                showAdTag(AdsLogTag.AdsMasterClass.name(), "getNextExtraNativeAd: " + ad);
+                return ad;
+            } else {
+                String ad = values[0];
+                AdsPreference.putInt(activity, AdsConstant.ExtraNativeAdShowSeqPos, 1);
+                showAdTag(AdsLogTag.AdsMasterClass.name(), "getNextExtraNativeAd: " + ad);
                 return ad;
             }
         }
@@ -667,16 +701,35 @@ public class AdsMasterClass {
                         dialog.setCancelable(false);
                         dialog.show();
 
-                        ((LottieAnimationView) dialog.findViewById(R.id.lottie_ads_loading)).addValueCallback(new KeyPath("**"), LottieProperty.COLOR_FILTER,
-                                new SimpleLottieValueCallback<ColorFilter>() {
-                                    @Override
-                                    public ColorFilter getValue(LottieFrameInfo<ColorFilter> frameInfo) {
-                                        return new PorterDuffColorFilter(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_text_color)))), PorterDuff.Mode.SRC_ATOP);
+                        dialog.findViewById(R.id.ly_ads_loading_bg).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_BG_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_bg_color))))));
+
+                        if (AdsPreference.getString(activity, AdsConstant.ADS_LOADING_DIALOG, AdsConstant.OLD).equals(AdsConstant.NEW)) {
+                            dialog.findViewById(R.id.ly_ads_loading1).setVisibility(View.GONE);
+                            dialog.findViewById(R.id.ly_ads_loading2).setVisibility(View.VISIBLE);
+
+                            ((LottieAnimationView) dialog.findViewById(R.id.lottie_ads_loading2)).addValueCallback(new KeyPath("**"), LottieProperty.COLOR_FILTER,
+                                    new SimpleLottieValueCallback<ColorFilter>() {
+                                        @Override
+                                        public ColorFilter getValue(LottieFrameInfo<ColorFilter> frameInfo) {
+                                            return new PorterDuffColorFilter(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_text_color)))), PorterDuff.Mode.SRC_ATOP);
+                                        }
                                     }
-                                }
-                        );
-                        dialog.findViewById(R.id.ly_ads_loading).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_BG_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_bg_color))))));
-                        ((TextView) dialog.findViewById(R.id.tv_ads_loading)).setTextColor(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_text_color))))));
+                            );
+                            ((TextView) dialog.findViewById(R.id.tv_ads_loading2)).setTextColor(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_text_color))))));
+                        } else {
+                            dialog.findViewById(R.id.ly_ads_loading1).setVisibility(View.VISIBLE);
+                            dialog.findViewById(R.id.ly_ads_loading2).setVisibility(View.GONE);
+
+                            ((LottieAnimationView) dialog.findViewById(R.id.lottie_ads_loading1)).addValueCallback(new KeyPath("**"), LottieProperty.COLOR_FILTER,
+                                    new SimpleLottieValueCallback<ColorFilter>() {
+                                        @Override
+                                        public ColorFilter getValue(LottieFrameInfo<ColorFilter> frameInfo) {
+                                            return new PorterDuffColorFilter(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_text_color)))), PorterDuff.Mode.SRC_ATOP);
+                                        }
+                                    }
+                            );
+                            ((TextView) dialog.findViewById(R.id.tv_ads_loading1)).setTextColor(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_text_color))))));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -1077,8 +1130,8 @@ public class AdsMasterClass {
             dialog.setCancelable(false);
 
             CardView card_click = dialog.findViewById(R.id.card_click);
-            ImageView iv_close = dialog.findViewById(R.id.iv_close);
-            TextView tv_ad = dialog.findViewById(R.id.tv_ad);
+            ImageView iv_close = dialog.findViewById(R.id.iv_close_qureka);
+            TextView tv_ad = dialog.findViewById(R.id.tv_ad_qureka);
 
             Animation slide_down = AnimationUtils.loadAnimation(activity, R.anim.slide_up);
             card_click.setAnimation(slide_down);

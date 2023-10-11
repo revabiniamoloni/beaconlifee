@@ -34,9 +34,9 @@ import java.util.List;
 
 public class BannerAdLoad {
 
-    public static void loadSequenceBannerAd(Activity activity, LinearLayout linearLayout) {
+    public static void loadSequenceBannerAd(Activity activity, LinearLayout linearLayout, boolean isShowExtraBanner) {
         if (AdsMasterClass.getAdsDataModel().getBanner_show_sequence() != null && AdsMasterClass.getAdsDataModel().getBanner_show_sequence().trim().length() > 0 && !AdsMasterClass.getAdsDataModel().getBanner_show_sequence().equals("0")) {
-            String nextAd = AdsMasterClass.getNextBannerAd(activity);
+            String nextAd = isShowExtraBanner ? AdsMasterClass.getNextExtraBannerAd(activity) : AdsMasterClass.getNextBannerAd(activity);
             if (nextAd.equals(AllAdsType.g.name())) {
                 loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getGoogle_banner_id()), nextAd);
             } else if (nextAd.equals(AllAdsType.adx.name())) {

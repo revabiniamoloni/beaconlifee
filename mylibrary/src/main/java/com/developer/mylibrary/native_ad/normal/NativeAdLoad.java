@@ -49,9 +49,9 @@ import java.util.Random;
 
 public class NativeAdLoad {
 
-    public static void loadSequenceNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
+    public static void loadSequenceNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize, boolean isShowExtraNative) {
         if (AdsMasterClass.getAdsDataModel().getNative_show_sequence() != null && AdsMasterClass.getAdsDataModel().getNative_show_sequence().trim().length() > 0 && !AdsMasterClass.getAdsDataModel().getNative_show_sequence().equals("0")) {
-            String nextAd = AdsMasterClass.getNextNativeAd(activity);
+            String nextAd = isShowExtraNative ? AdsMasterClass.getNextExtraNativeAd(activity) : AdsMasterClass.getNextNativeAd(activity);
             AdsMasterClass.showAdTag(AdsLogTag.NativeAdLoad.name(), nextAd);
             if (nextAd.equals(AllAdsType.g.name())) {
                 loadGoogleNative(activity, relativeLayout, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getGoogle_native_id()), nextAd, nativeAdSize);
@@ -197,7 +197,8 @@ public class NativeAdLoad {
                     maxNativeAdView.getCallToActionButton().setTextColor(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_BUTTON_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_button_text_color))))));
 
                     if (nativeAdSize.equals(NativeAdSize.LARGE.name())) {
-                        maxNativeAdView.getMainView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 750));
+                        int heightInPx = (int) (300 * activity.getResources().getDisplayMetrics().density);
+                        maxNativeAdView.getMainView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, heightInPx));
                     }
                 }
 

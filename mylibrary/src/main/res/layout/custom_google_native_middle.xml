@@ -93,7 +93,7 @@
                         android:layout_height="35dp"
                         android:background="@drawable/native_ad_button_bg"
                         android:gravity="center"
-                        android:textColor="@color/ad_button_color"
+                        android:textColor="@color/ad_button_text_color"
                         android:textSize="12sp" />
 
                 </LinearLayout>

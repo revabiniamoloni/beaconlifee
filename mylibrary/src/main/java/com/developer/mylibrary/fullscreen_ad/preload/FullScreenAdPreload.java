@@ -130,6 +130,7 @@ public class FullScreenAdPreload {
                             interstitialAd = null;
                             preloadSequenceFullScreenAd(activityPreload);
                             AdsMasterClass.startNextActivity(activityPreload, intentPreload);
+                            AdsShareUtils.showQurekaOnFullscreenClose(activityPreload);
                         }
 
                         @Override
@@ -166,6 +167,7 @@ public class FullScreenAdPreload {
                     }
                     preloadSequenceFullScreenAd(activityPreload);
                     AdsMasterClass.startNextActivity(activityPreload, intentPreload);
+                    AdsShareUtils.showQurekaOnFullscreenClose(activityPreload);
                 }
 
                 @Override
@@ -226,6 +228,7 @@ public class FullScreenAdPreload {
                     maxInterstitialAd.destroy();
                     preloadSequenceFullScreenAd(activityPreload);
                     AdsMasterClass.startNextActivity(activityPreload, intentPreload);
+                    AdsShareUtils.showQurekaOnFullscreenClose(activityPreload);
                 }
 
                 @Override
@@ -262,8 +265,8 @@ public class FullScreenAdPreload {
                 dialog.setCancelable(false);
 
                 CardView card_click = dialog.findViewById(R.id.card_click);
-                ImageView iv_close = dialog.findViewById(R.id.iv_close);
-                TextView tv_ad = dialog.findViewById(R.id.tv_ad);
+                ImageView iv_close = dialog.findViewById(R.id.iv_close_qureka);
+                TextView tv_ad = dialog.findViewById(R.id.tv_ad_qureka);
 
                 Animation slide_down = AnimationUtils.loadAnimation(activity, R.anim.slide_up);
                 card_click.setAnimation(slide_down);
@@ -277,6 +280,7 @@ public class FullScreenAdPreload {
                     public void onClick(View v) {
                         dialog.dismiss();
                         AdsMasterClass.startNextActivity(activity, intent);
+                        AdsShareUtils.showQurekaOnFullscreenClose(activity);
                     }
                 });
 

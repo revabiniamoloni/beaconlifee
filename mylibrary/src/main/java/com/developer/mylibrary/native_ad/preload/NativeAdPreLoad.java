@@ -53,19 +53,13 @@ public class NativeAdPreLoad {
     public static Object nativeObject;
     public static String showApplovin = "";
 
-    public static void showPreloadSequenceNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize, boolean showExtraNative) {
+    public static void showPreloadSequenceNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
         AdsMasterClass.showAdTag(AdsLogTag.NativeAdPreLoad.name(), "showPreloadSequenceNativeAd - " + showApplovin);
         NativeAdLoad.hideLoadingAdsLayout(relativeLayout);
         if (showApplovin.equals(AllAdsType.a.name())) {
             loadApplovinNative(activity, relativeLayout, linearLayout, AdsMasterClass.getApplovinNativeId(activity, AdsMasterClass.getAdsDataModel().getApplovin_native_id()), AllAdsType.a.name(), nativeAdSize);
-            if (showExtraNative) {
-                NativeAdPreLoad.preloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
-            }
         } else if (showApplovin.equals(AllAdsType.q.name())) {
             loadQurekaNative(activity, relativeLayout, linearLayout, nativeAdSize);
-            if (showExtraNative) {
-                NativeAdPreLoad.preloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
-            }
         } else {
             if (nativeObject != null) {
                 if (nativeObject instanceof NativeAd) {
@@ -95,15 +89,10 @@ public class NativeAdPreLoad {
                 }
             }
         }
-        if (!showExtraNative) {
-            NativeAdPreLoad.preloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
-        }
+        NativeAdPreLoad.preloadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize);
     }
 
     public static void preloadSequenceNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
-        if (AdsMasterClass.getAdsDataModel().getExit_app_native() == 1) {
-            return;
-        }
         NativeAdLoad.hideLoadingAdsLayout(relativeLayout);
         if (AdsMasterClass.getAdsDataModel().getNative_show_sequence() != null && AdsMasterClass.getAdsDataModel().getNative_show_sequence().trim().length() > 0 && !AdsMasterClass.getAdsDataModel().getNative_show_sequence().equals("0")) {
             String nextAd = AdsMasterClass.getNextNativeAd(activity);
@@ -228,7 +217,8 @@ public class NativeAdPreLoad {
                     maxNativeAdView.getCallToActionButton().setTextColor(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_BUTTON_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_button_text_color))))));
 
                     if (nativeAdSize.equals(NativeAdSize.LARGE.name())) {
-                        maxNativeAdView.getMainView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 750));
+                        int heightInPx = (int) (300 * activity.getResources().getDisplayMetrics().density);
+                        maxNativeAdView.getMainView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, heightInPx));
                     }
                 }
 

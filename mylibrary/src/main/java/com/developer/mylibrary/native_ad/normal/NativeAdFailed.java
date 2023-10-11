@@ -193,7 +193,8 @@ public class NativeAdFailed {
                     maxNativeAdView.getCallToActionButton().setTextColor(ColorStateList.valueOf(Color.parseColor(AdsPreference.getString(activity, AdsConstant.NATIVE_BUTTON_TEXT_COLOR, AdsConstant.getHexStringColor(activity.getResources().getColor(R.color.ad_button_text_color))))));
 
                     if (nativeAdSize.equals(NativeAdSize.LARGE.name())) {
-                        maxNativeAdView.getMainView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 750));
+                        int heightInPx = (int) (300 * activity.getResources().getDisplayMetrics().density);
+                        maxNativeAdView.getMainView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, heightInPx));
                     }
                 }
 

@@ -95,8 +95,10 @@ public class AdsApiClass {
             AdsPreference.putInt(activity, AdsConstant.ShowPreload_FullScreenAdSeqPos, 0);
             AdsPreference.putInt(activity, AdsConstant.BannerAdShowValuePos, 0);
             AdsPreference.putInt(activity, AdsConstant.BannerAdShowSeqPos, 0);
+            AdsPreference.putInt(activity, AdsConstant.ExtraBannerAdShowSeqPos, 0);
             AdsPreference.putInt(activity, AdsConstant.NativeAdShowValuePos, 0);
             AdsPreference.putInt(activity, AdsConstant.NativeAdShowSeqPos, 0);
+            AdsPreference.putInt(activity, AdsConstant.ExtraNativeAdShowSeqPos, 0);
             AdsPreference.putInt(activity, AdsConstant.RewardedAdShowValuePos, 0);
             AdsPreference.putInt(activity, AdsConstant.RewardedAdShowSeqPos, 0);
             AdsPreference.putInt(activity, AdsConstant.FullScreenAdShowOnBackValuePos, 0);
@@ -337,8 +339,17 @@ public class AdsApiClass {
                         String upgrade_package_name = ads_data.optString("upgrade_package_name");
                         adsDataModel.setUpgrade_package_name(upgrade_package_name);
 
+                        int show_qureka_interstitial = ads_data.optInt("show_qureka_interstitial");
+                        adsDataModel.setShow_qureka_interstitial(show_qureka_interstitial);
+
                         int show_extra_features = ads_data.optInt("show_extra_features");
                         adsDataModel.setShow_extra_features(show_extra_features);
+
+                        int show_qureka_round = ads_data.optInt("show_qureka_round");
+                        adsDataModel.setShow_qureka_round(show_qureka_round);
+
+                        String privacy_policy_url = ads_data.optString("privacy_policy_url");
+                        adsDataModel.setPrivacy_policy_url(privacy_policy_url);
 
                         // extra flag in other ads data
                         String extra_flag_a = ads_data.optString("extra_flag_a");
@@ -375,7 +386,6 @@ public class AdsApiClass {
                     adsDataModel.setIs_appopen_fail_check(false);
                     adsDataModel.setIs_splash_appopen_fail_check(false);
                     adsDataModel.setIs_appopen_loading(false);
-                    adsDataModel.setExit_app_native(0);
 
                     if (adsDataModel.getRandom_max_number() > 0) {
                         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -425,7 +435,6 @@ public class AdsApiClass {
             adsDataModel.setNative_preload(1);
             adsDataModel.setNative_list_show_value(5);
             adsDataModel.setShow_exit_dialog_native(1);
-            adsDataModel.setExit_app_native(0);
             AdsMasterClass.setAdsDataModel(adsDataModel);
 
             FullScreenAdPreload.preloadSequenceFullScreenAd(activity);

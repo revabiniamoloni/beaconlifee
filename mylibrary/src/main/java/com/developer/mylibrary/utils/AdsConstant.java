@@ -10,8 +10,10 @@ public class AdsConstant {
     public static String ShowPreload_FullScreenAdSeqPos = "ShowPreload_FullScreenAdSeqPos";
     public static String BannerAdShowValuePos = "BannerAdShowValuePos";
     public static String BannerAdShowSeqPos = "BannerAdShowSeqPos";
+    public static String ExtraBannerAdShowSeqPos = "ExtraBannerAdShowSeqPos";
     public static String NativeAdShowValuePos = "NativeAdShowValuePos";
     public static String NativeAdShowSeqPos = "NativeAdShowSeqPos";
+    public static String ExtraNativeAdShowSeqPos = "ExtraNativeAdShowSeqPos";
     public static String RewardedAdShowValuePos = "RewardedAdShowValuePos";
     public static String RewardedAdShowSeqPos = "RewardedAdShowSeqPos";
     public static String FullScreenAdShowOnBackValuePos = "FullScreenAdShowOnBackValuePos";
@@ -51,6 +53,9 @@ public class AdsConstant {
     public static String NATIVE_TEXT_COLOR = "NATIVE_TEXT_COLOR";
     public static String NATIVE_BUTTON_COLOR = "NATIVE_BUTTON_COLOR";
     public static String NATIVE_BUTTON_TEXT_COLOR = "NATIVE_BUTTON_TEXT_COLOR";
+    public static String ADS_LOADING_DIALOG = "ADS_LOADING_DIALOG";
+    public static String OLD = "OLD";
+    public static String NEW = "NEW";
 
     public static String START_WITH_FINISH = "START_WITH_FINISH";
     public static String ONLY_FINISH = "ONLY_FINISH";

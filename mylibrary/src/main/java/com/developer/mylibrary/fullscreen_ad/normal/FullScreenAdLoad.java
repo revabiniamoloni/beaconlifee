@@ -118,6 +118,7 @@ public class FullScreenAdLoad {
                             super.onAdDismissedFullScreenContent();
                             AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadGoogleFullScreen - dismiss");
                             AdsMasterClass.startNextActivity(activity, intent);
+                            AdsShareUtils.showQurekaOnFullscreenClose(activity);
                         }
 
                         @Override
@@ -176,6 +177,7 @@ public class FullScreenAdLoad {
                 public void onInterstitialDismissed(Ad ad) {
                     AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadFacebookFullScreen - dismiss");
                     AdsMasterClass.startNextActivity(activity, intent);
+                    AdsShareUtils.showQurekaOnFullscreenClose(activity);
                 }
 
                 @Override
@@ -271,6 +273,7 @@ public class FullScreenAdLoad {
                     AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadApplovinFullScreen - dismiss");
                     maxInterstitialAd.destroy();
                     AdsMasterClass.startNextActivity(activity, intent);
+                    AdsShareUtils.showQurekaOnFullscreenClose(activity);
                 }
 
                 @Override
@@ -322,8 +325,8 @@ public class FullScreenAdLoad {
                         dialog.setCancelable(false);
 
                         CardView card_click = dialog.findViewById(R.id.card_click);
-                        ImageView iv_close = dialog.findViewById(R.id.iv_close);
-                        TextView tv_ad = dialog.findViewById(R.id.tv_ad);
+                        ImageView iv_close = dialog.findViewById(R.id.iv_close_qureka);
+                        TextView tv_ad = dialog.findViewById(R.id.tv_ad_qureka);
 
                         Animation slide_down = AnimationUtils.loadAnimation(activity, R.anim.slide_up);
                         card_click.setAnimation(slide_down);
@@ -337,6 +340,7 @@ public class FullScreenAdLoad {
                             public void onClick(View v) {
                                 dialog.dismiss();
                                 AdsMasterClass.startNextActivity(activity, intent);
+                                AdsShareUtils.showQurekaOnFullscreenClose(activity);
                             }
                         });
 

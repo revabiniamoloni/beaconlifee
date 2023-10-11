@@ -131,6 +131,7 @@
             android:layout_margin="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/native_ad_button_bg"
+            android:gravity="center"
             android:maxLines="1"
             android:paddingHorizontal="10dp"
             android:textColor="@color/ad_button_text_color"

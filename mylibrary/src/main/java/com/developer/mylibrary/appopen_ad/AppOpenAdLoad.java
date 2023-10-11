@@ -147,8 +147,8 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
             dialog.setCancelable(false);
 
             CardView card_click = dialog.findViewById(R.id.card_click);
-            ImageView iv_close = dialog.findViewById(R.id.iv_close);
-            TextView tv_ad = dialog.findViewById(R.id.tv_ad);
+            ImageView iv_close = dialog.findViewById(R.id.iv_close_qureka);
+            TextView tv_ad = dialog.findViewById(R.id.tv_ad_qureka);
 
             Animation slide_down = AnimationUtils.loadAnimation(activity, R.anim.slide_up);
             card_click.setAnimation(slide_down);

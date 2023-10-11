@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/_5sdp">
 
         <TextView
-            android:id="@+id/tv_ad"
+            android:id="@+id/tv_ad_qureka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/_14sdp" />
 
         <ImageView
-            android:id="@+id/iv_close"
+            android:id="@+id/iv_close_qureka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

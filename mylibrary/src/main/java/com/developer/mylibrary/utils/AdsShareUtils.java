@@ -32,6 +32,17 @@ public class AdsShareUtils {
         }
     }
 
+    public static void showPrivacyPolicy(Activity activity) {
+        if (AdsMasterClass.getAdsDataModel() != null) {
+            String url = AdsMasterClass.getAdsDataModel().getPrivacy_policy_url();
+            if (url != null && url.trim().length() > 0 && !url.equals("0")) {
+                CustomTabsIntent build = new CustomTabsIntent.Builder().build();
+                build.intent.setPackage("com.android.chrome");
+                build.launchUrl(activity, Uri.parse(url.trim()));
+            }
+        }
+    }
+
     public static void showQurekaAds(Activity activity) {
         if (!AdsMasterClass.getAdsDataModel().getQureka_url().isEmpty()) {
             CustomTabsIntent build = new CustomTabsIntent.Builder().build();
@@ -47,5 +58,11 @@ public class AdsShareUtils {
         mActivity = activity;
         mIntent = intent;
         activity.startActivity(new Intent(activity, CustomChromeActivity.class));
+    }
+
+    public static void showQurekaOnFullscreenClose(Activity activity) {
+        if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getShow_qureka_interstitial() == 1) {
+            AdsShareUtils.showQurekaAds(activity);
+        }
     }
 }

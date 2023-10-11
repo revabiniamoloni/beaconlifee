@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/_5sdp">
 
         <TextView
-            android:id="@+id/tv_ad"
+            android:id="@+id/tv_ad_qureka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/_14sdp" />
 
         <ImageView
-            android:id="@+id/iv_close"
+            android:id="@+id/iv_close_qureka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -59,11 +59,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:src="@drawable/ic_q_2_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_5sdp"
-                android:layout_marginVertical="@dimen/_7sdp" />
+                android:layout_marginVertical="@dimen/_7sdp"
+                android:src="@drawable/ic_q_2_title" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,8 +97,8 @@
                 android:background="@drawable/rounded_bg_20"
                 android:backgroundTint="#FAC012"
                 android:fontFamily="@font/roboto_bold"
-                android:includeFontPadding="false"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:padding="@dimen/_10sdp"
                 android:text="Download Now"
                 android:textColor="@color/white"

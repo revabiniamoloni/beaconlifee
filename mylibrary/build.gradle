@@ -57,6 +57,6 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.6.2"
 
     // kotlin
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
 }

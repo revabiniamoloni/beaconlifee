@@ -18,7 +18,7 @@ public class AdsDefaultValueOnRemove {
         adsDataModel.setBanner_show_value(1);
         adsDataModel.setNative_show_sequence("q");
         adsDataModel.setNative_show_value(2);
-        adsDataModel.setNative_show_fail_sequence("0");
+        adsDataModel.setNative_show_fail_sequence("");
         adsDataModel.setNative_preload(1);
         adsDataModel.setNative_list_show_value(5);
         adsDataModel.setShow_ads_on_back("1-2-3");

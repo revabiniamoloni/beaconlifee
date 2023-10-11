@@ -86,7 +86,10 @@ public class AdsDataModel {
     private int show_exit_dialog_native = 0;
     private int check_app_status = 0;
     private String upgrade_package_name = "";
+    private int show_qureka_interstitial = 0;
     private int show_extra_features = 0;
+    private int show_qureka_round = 0;
+    private String privacy_policy_url = "";
 
     // extra flag in other ads data
     private String extra_flag_a = "";
@@ -107,7 +110,6 @@ public class AdsDataModel {
     private ArrayList<Integer> maxNumberList = new ArrayList<>();
     private int next_on_back_value = 0;
     private int next_tips_fullscreen_value = 0;
-    private int exit_app_native = 0;
 
     public String getApp_open_splash() {
         return app_open_splash;
@@ -661,14 +663,6 @@ public class AdsDataModel {
         this.next_tips_fullscreen_value = next_tips_fullscreen_value;
     }
 
-    public int getExit_app_native() {
-        return exit_app_native;
-    }
-
-    public void setExit_app_native(int exit_app_native) {
-        this.exit_app_native = exit_app_native;
-    }
-
     public int getCheck_app_status() {
         return check_app_status;
     }
@@ -685,12 +679,36 @@ public class AdsDataModel {
         this.upgrade_package_name = upgrade_package_name;
     }
 
+    public int getShow_qureka_interstitial() {
+        return show_qureka_interstitial;
+    }
+
+    public void setShow_qureka_interstitial(int show_qureka_interstitial) {
+        this.show_qureka_interstitial = show_qureka_interstitial;
+    }
+
     public int getShow_extra_features() {
         return show_extra_features;
     }
 
     public void setShow_extra_features(int show_extra_features) {
         this.show_extra_features = show_extra_features;
+    }
+
+    public int getShow_qureka_round() {
+        return show_qureka_round;
+    }
+
+    public void setShow_qureka_round(int show_qureka_round) {
+        this.show_qureka_round = show_qureka_round;
+    }
+
+    public String getPrivacy_policy_url() {
+        return privacy_policy_url;
+    }
+
+    public void setPrivacy_policy_url(String privacy_policy_url) {
+        this.privacy_policy_url = privacy_policy_url;
     }
 
     public String getExtra_flag_a() {

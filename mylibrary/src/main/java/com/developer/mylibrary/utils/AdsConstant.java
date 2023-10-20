@@ -37,9 +37,9 @@ public class AdsConstant {
     public static String FullScreenAdShowOnBackSeqPos = "FullScreenAdShowOnBackSeqPos";
     public static String FullScreenAdShowOnTipsSeqPos = "FullScreenAdShowOnTipsSeqPos";
 
-    public static Integer[] QUREKA_FULL_SCREEN_LIST = new Integer[]{R.layout.qureka_full_ad_0, R.layout.qureka_full_ad_1, R.layout.qureka_full_ad_2, R.layout.qureka_full_ad_3, R.layout.qureka_full_ad_4, R.layout.qureka_full_ad_5, R.layout.qureka_full_ad_6, R.layout.qureka_full_ad_7, R.layout.qureka_full_ad_8, R.layout.qureka_full_ad_9, R.layout.qureka_full_ad_10};
-    public static Integer[] QUREKA_NATIVE_LARGE_LIST = new Integer[]{R.drawable.ic_q_native_0, R.drawable.ic_q_native_1, R.drawable.ic_q_native_2, R.drawable.ic_q_native_3, R.drawable.ic_q_native_4, R.drawable.ic_q_native_5, R.drawable.ic_q_native_6, R.drawable.ic_q_native_7};
-    public static Integer[] QUREKA_NATIVE_MIDDLE_LIST = new Integer[]{R.drawable.ic_q_native_middle_0, R.drawable.ic_q_native_middle_1, R.drawable.ic_q_native_middle_2, R.drawable.ic_q_native_middle_3, R.drawable.ic_q_native_middle_4};
+    public static Integer[] QUREKA_FULL_SCREEN_LIST = new Integer[]{R.layout.qureka_full_ad_0, R.layout.qureka_full_ad_1};
+    public static Integer[] QUREKA_NATIVE_LARGE_LIST = new Integer[]{R.drawable.ic_q_native_0, R.drawable.ic_q_native_3};
+    public static Integer[] QUREKA_NATIVE_MIDDLE_LIST = new Integer[]{R.drawable.ic_q_native_middle_0, R.drawable.ic_q_native_middle_4};
     public static Integer[] QUREKA_NATIVE_MINI_LIST = new Integer[]{R.drawable.ic_q_banner_ad, R.drawable.ic_q_banner_ad};
 
     // put extra & preference key

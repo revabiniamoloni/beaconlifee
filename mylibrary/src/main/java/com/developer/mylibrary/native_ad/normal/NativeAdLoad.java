@@ -245,7 +245,7 @@ public class NativeAdLoad {
         linearLayout.addView(nativeAdLayout);
 
         ImageView iv_media_native = adView.findViewById(R.id.iv_media_native);
-        if (AdsMasterClass.getAdsDataModel() != null && !AdsMasterClass.getAdsDataModel().getQureka_ads_image().isEmpty()) {
+        if (AdsMasterClass.getAdsDataModel() != null && !AdsMasterClass.getAdsDataModel().getQureka_ads_image().trim().isEmpty()) {
             Integer[] qureka_image_list = new Integer[]{};
             if (nativeAdSize.equals(NativeAdSize.EXTRA.name())) {
                 qureka_image_list = AdsConstant.QUREKA_NATIVE_MIDDLE_LIST;
@@ -256,7 +256,7 @@ public class NativeAdLoad {
             } else {
                 qureka_image_list = AdsConstant.QUREKA_NATIVE_LARGE_LIST;
             }
-            if (AdsMasterClass.getAdsDataModel().getQureka_ads_image().equals("0")) {
+            if (AdsMasterClass.getAdsDataModel().getQureka_ads_image().trim().equals("0")) {
                 iv_media_native.setImageResource(qureka_image_list[Integer.parseInt(AdsMasterClass.getAdsDataModel().getQureka_ads_image())]);
             } else {
                 int randomValue = new Random().nextInt(qureka_image_list.length);

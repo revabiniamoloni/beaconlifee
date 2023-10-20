@@ -308,7 +308,6 @@ public class FullScreenAdLoad {
     private static void showQurekaFullAds(final Activity activity, final Intent intent) {
         if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getIs_direct_qureka_open() != 1) {
             if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getQureka_url().trim().length() > 0) {
-
                 AdsMasterClass.showAdProgressDialog(activity);
 
                 new Handler().postDelayed(new Runnable() {

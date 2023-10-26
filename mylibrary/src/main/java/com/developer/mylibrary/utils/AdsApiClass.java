@@ -383,8 +383,6 @@ public class AdsApiClass {
                         adsDataModel.setExtra_flag_j(extra_flag_j);
                     }
 
-                    adsDataModel.setIs_appopen_fail_check(false);
-                    adsDataModel.setIs_splash_appopen_fail_check(false);
                     adsDataModel.setIs_appopen_loading(false);
 
                     if (adsDataModel.getRandom_max_number() > 0) {

@@ -74,7 +74,7 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
 
     private void loadAd(Context context, String currentAd) {
         if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getApp_open_main() == 1) {
-            this.currentAdsType = currentAd;
+            currentAdsType = currentAd;
             if (currentAd.equals(AllAdsType.a.name())) {
                 loadAppLovinAd(AdsMasterClass.getApplovinAppOpenId(context, AdsMasterClass.getAdsDataModel().getApplovin_app_open_id()));
             } else if (!currentAd.equals(AllAdsType.q.name())) {
@@ -106,14 +106,8 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
                     AdsMasterClass.showAdTag(AdsLogTag.AppOpenAdLoad.name(), "loadGoogleAppOpen - failed " + loadAdError.getMessage());
                     isLoaded = false;
 
-                    if (AdsMasterClass.getAdsDataModel().isIs_appopen_fail_check()) {
-                        AdsMasterClass.getAdsDataModel().setIs_appopen_loading(false);
-                        AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(false);
-                    } else {
-                        AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(true);
-                        String ad = AdsMasterClass.getNextAppOpenFailedAd(AdsMasterClass.getAdsDataModel().getApp_open_sequence());
-                        loadAd(MyAdApplication.getMyApplication(), ad);
-                    }
+                    String ad = AdsMasterClass.getNextAppOpenFailedAd(AdsMasterClass.getAdsDataModel().getApp_open_sequence());
+                    loadAd(MyAdApplication.getMyApplication(), ad);
                 }
             };
 
@@ -192,7 +186,6 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
 
             if (!isGoogleAdAvailable() && !isApplovinAdAvailable() && !currentAdsType.equals("q")) {
                 if (!AdsMasterClass.getAdsDataModel().isIs_appopen_loading()) {
-                    AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(false);
                     loadAd(MyAdApplication.getMyApplication(), AdsMasterClass.getAdsDataModel().getApp_open_sequence());
                 }
                 return;
@@ -228,7 +221,6 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
                         AppOpenAdLoad.this.appOpenAd = null;
                         isShowingAd = false;
                         AdsMasterClass.getAdsDataModel().setIs_appopen_loading(false);
-                        AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(false);
                         loadAd(MyAdApplication.getMyApplication(), AdsMasterClass.getAdsDataModel().getApp_open_sequence());
                     }
 
@@ -277,7 +269,6 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
         AppOpenAdLoad.this.maxAppOpenAd = null;
         isShowingAd = false;
         AdsMasterClass.getAdsDataModel().setIs_appopen_loading(false);
-        AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(false);
         loadAd(MyAdApplication.getMyApplication(), AdsMasterClass.getAdsDataModel().getApp_open_sequence());
     }
 
@@ -291,14 +282,8 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
         AdsMasterClass.showAdTag(AdsLogTag.AppOpenAdLoad.name(), "Applovin Ad failed " + error.getMessage());
         isLoaded = false;
 
-        if (AdsMasterClass.getAdsDataModel().isIs_appopen_fail_check()) {
-            AdsMasterClass.getAdsDataModel().setIs_appopen_loading(false);
-            AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(false);
-        } else {
-            AdsMasterClass.getAdsDataModel().setIs_appopen_fail_check(true);
-            String ad = AdsMasterClass.getNextAppOpenFailedAd(AdsMasterClass.getAdsDataModel().getApp_open_sequence());
-            loadAd(MyAdApplication.getMyApplication(), ad);
-        }
+        String ad = AdsMasterClass.getNextAppOpenFailedAd(AdsMasterClass.getAdsDataModel().getApp_open_sequence());
+        loadAd(MyAdApplication.getMyApplication(), ad);
     }
 
     @Override

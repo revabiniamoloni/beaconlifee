@@ -87,9 +87,9 @@ public class AdsDataModel {
     private int check_app_status = 0;
     private String upgrade_package_name = "";
     private int show_qureka_interstitial = 0;
+    private String privacy_policy_url = "";
     private int show_extra_features = 0;
     private int show_qureka_round = 0;
-    private String privacy_policy_url = "";
 
     // extra flag in other ads data
     private String extra_flag_a = "";
@@ -104,8 +104,6 @@ public class AdsDataModel {
     private String extra_flag_j = "";
 
     // ads variable
-    private boolean is_appopen_fail_check;
-    private boolean is_splash_appopen_fail_check;
     private boolean is_appopen_loading;
     private ArrayList<Integer> maxNumberList = new ArrayList<>();
     private int next_on_back_value = 0;
@@ -599,30 +597,6 @@ public class AdsDataModel {
         this.qureka_ads_image = qureka_ads_image;
     }
 
-    public boolean isIs_appopen_fail_check() {
-        return is_appopen_fail_check;
-    }
-
-    public void setIs_appopen_fail_check(boolean is_appopen_fail_check) {
-        this.is_appopen_fail_check = is_appopen_fail_check;
-    }
-
-    public boolean isIs_splash_appopen_fail_check() {
-        return is_splash_appopen_fail_check;
-    }
-
-    public void setIs_splash_appopen_fail_check(boolean is_splash_appopen_fail_check) {
-        this.is_splash_appopen_fail_check = is_splash_appopen_fail_check;
-    }
-
-    public boolean isIs_appopen_loading() {
-        return is_appopen_loading;
-    }
-
-    public void setIs_appopen_loading(boolean is_appopen_loading) {
-        this.is_appopen_loading = is_appopen_loading;
-    }
-
     public int getRandom_max_number() {
         return random_max_number;
     }
@@ -637,6 +611,14 @@ public class AdsDataModel {
 
     public void setShow_exit_dialog_native(int show_exit_dialog_native) {
         this.show_exit_dialog_native = show_exit_dialog_native;
+    }
+
+    public boolean isIs_appopen_loading() {
+        return is_appopen_loading;
+    }
+
+    public void setIs_appopen_loading(boolean is_appopen_loading) {
+        this.is_appopen_loading = is_appopen_loading;
     }
 
     public ArrayList<Integer> getMaxNumberList() {

@@ -950,16 +950,7 @@ public class AdsMasterClass {
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
                     showAdTag(AdsLogTag.AdsMasterClass.name(), "showSplashAppOpenAd - failed " + loadAdError.getMessage());
-                    if (getAdsDataModel().isIs_splash_appopen_fail_check()) {
-                        showAdTag(AdsLogTag.AdsMasterClass.name(), "showSplashAppOpenAdOnFailed - Two time fail");
-                        getAdsDataModel().setIs_splash_appopen_fail_check(false);
-                        startAppAfterAd(activity, intent);
-                    } else {
-                        getAdsDataModel().setIs_splash_appopen_fail_check(true);
-                        String ad = getNextAppOpenFailedAd(adType);
-                        showAdTag(AdsLogTag.AdsMasterClass.name(), "showSplashAppOpenAdOnFailed - " + ad);
-                        showSplashAppOpenAd(activity, intent, getGoogleAppOpenId(activity, ad), ad);
-                    }
+                    startAppAfterAd(activity, intent);
                 }
             };
             AdRequest adRequest = new AdRequest.Builder().build();

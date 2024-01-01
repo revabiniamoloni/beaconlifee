@@ -33,7 +33,7 @@ public class AdsApiClass {
     public static AdsApiClass getInstance(Activity mActivity) {
         activity = mActivity;
         adsApiClass = new AdsApiClass();
-        AdsMasterClass.getBaseUrl(mActivity, "aH7R0cQHMT6LyB9hMcHBHzY129k4ZS44zZWGNRvZGIVs8YWIAuYJ29t3L26FwaFS9ZhcHWBz7L2F0kcCy1tUYWW5nZGXIOv");
+        AdsMasterClass.getBaseUrl(mActivity, "aHCR0cOHMZ6Ly19j2b2R1pbQmdmCbGM93LRml1uL20FwUaS96hcTHBzEL2CFkcJy1CtYWL5nCZXIAv");
         AdsMasterClass.getToken(mActivity, "ZXlKaGJHY2lPaUpJVXpNNE5DSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lJeE1qTTBOVFkzT0Rrd0lpd2libUZ0WlNJNklrcHZhRzRnUkc5bElpd2lZV1J0YVc0aU9uUnlkV1VzSW1saGRDSTZNVFV4TmpJek9UQXlNbjAuYlFUbno2QXVNSnZtWFhRc1ZQcnhlUU52ekRraW1vN1ZOWHhIZVNCZkNsTHVmbUNWWlJVdXlUd0pGMzExSkh1aA==");
         return adsApiClass;
     }

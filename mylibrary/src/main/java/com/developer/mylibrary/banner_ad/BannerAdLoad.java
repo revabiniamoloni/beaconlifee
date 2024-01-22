@@ -1,8 +1,13 @@
 package com.developer.mylibrary.banner_ad;
 
 import android.app.Activity;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowMetrics;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,32 +28,34 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeBannerAd;
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.admanager.AdManagerAdView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class BannerAdLoad {
 
-    public static void loadSequenceBannerAd(Activity activity, LinearLayout linearLayout, boolean isShowExtraBanner) {
+    public static void loadSequenceBannerAd(Activity activity, LinearLayout linearLayout, boolean isShowExtraBanner, boolean is_collapsible) {
         if (AdsMasterClass.getAdsDataModel().getBanner_show_sequence() != null && AdsMasterClass.getAdsDataModel().getBanner_show_sequence().trim().length() > 0 && !AdsMasterClass.getAdsDataModel().getBanner_show_sequence().equals("0")) {
             String nextAd = isShowExtraBanner ? AdsMasterClass.getNextExtraBannerAd(activity) : AdsMasterClass.getNextBannerAd(activity);
             if (nextAd.equals(AllAdsType.g.name())) {
-                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getGoogle_banner_id()), nextAd);
+                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getGoogle_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.adx.name())) {
-                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAdx_banner_id()), nextAd);
+                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAdx_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.adx2.name())) {
-                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAdx2_banner_id()), nextAd);
+                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAdx2_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.ab.name())) {
-                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_banner_id()), nextAd);
+                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.f.name())) {
-                loadFacebookBanner(activity, linearLayout, AdsMasterClass.getFacebookBannerId(activity, AdsMasterClass.getAdsDataModel().getFacebook_banner_id()), nextAd);
+                loadFacebookBanner(activity, linearLayout, AdsMasterClass.getFacebookBannerId(activity, AdsMasterClass.getAdsDataModel().getFacebook_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.fnb.name())) {
-                loadFacebookNativeBanner(activity, linearLayout, AdsMasterClass.getFacebookNativeBannerId(activity, AdsMasterClass.getAdsDataModel().getFacebook_native_banner_id()), nextAd);
+                loadFacebookNativeBanner(activity, linearLayout, AdsMasterClass.getFacebookNativeBannerId(activity, AdsMasterClass.getAdsDataModel().getFacebook_native_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.q.name())) {
                 loadQurekaBanner(activity, linearLayout);
             } else {
@@ -59,13 +66,22 @@ public class BannerAdLoad {
         }
     }
 
-    public static void loadGoogleBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd) {
+    public static void loadGoogleBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd, boolean is_collapsible) {
         if (adID != null && adID.trim().length() > 0) {
             linearLayout.setVisibility(View.VISIBLE);
             AdManagerAdView adView = new AdManagerAdView(activity);
-            adView.setAdSize(AdSize.BANNER);
             adView.setAdUnitId(adID);
-            adView.loadAd(new AdManagerAdRequest.Builder().build());
+            if (is_collapsible) {
+                AdSize adSize = getAdBannerAdSize(activity, linearLayout);
+                adView.setAdSize(adSize);
+                Bundle extras = new Bundle();
+                extras.putString("collapsible", "bottom");
+                extras.putString("collapsible_request_id", UUID.randomUUID().toString());
+                adView.loadAd(new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras).build());
+            } else {
+                adView.setAdSize(AdSize.BANNER);
+                adView.loadAd(new AdRequest.Builder().build());
+            }
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
@@ -73,7 +89,7 @@ public class BannerAdLoad {
                     AdsMasterClass.showAdTag(AdsLogTag.BannerAdLoad.name(), "loadGoogleBanner - failed " + loadAdError.getMessage());
                     adView.setAdListener(null);
                     adView.destroy();
-                    BannerAdFailed.showBannerAdOnFailed(activity, linearLayout, currentAd);
+                    BannerAdFailed.showBannerAdOnFailed(activity, linearLayout, currentAd, is_collapsible);
                 }
 
                 @Override
@@ -88,7 +104,34 @@ public class BannerAdLoad {
         }
     }
 
-    public static void loadFacebookBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd) {
+    public static AdSize getAdBannerAdSize(Activity activity, LinearLayout linearLayout) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            WindowMetrics windowMetrics = null;
+            windowMetrics = activity.getWindowManager().getCurrentWindowMetrics();
+            Rect bounds = null;
+            bounds = windowMetrics.getBounds();
+            float adWidthPixels = linearLayout.getWidth();
+            if (adWidthPixels == 0f) {
+                adWidthPixels = bounds.width();
+            }
+            float density = activity.getResources().getDisplayMetrics().density;
+            int adWidth = (int) (adWidthPixels / density);
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth);
+        } else {
+            Display display = activity.getWindowManager().getDefaultDisplay();
+            DisplayMetrics outMetrics = new DisplayMetrics();
+            display.getMetrics(outMetrics);
+            float density = outMetrics.density;
+            float adWidthPixels = linearLayout.getWidth();
+            if (adWidthPixels == 0) {
+                adWidthPixels = outMetrics.widthPixels;
+            }
+            int adWidth = (int) (adWidthPixels / density);
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth);
+        }
+    }
+
+    public static void loadFacebookBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd, boolean is_collapsible) {
         if (adID != null && adID.trim().length() > 0) {
             linearLayout.setVisibility(View.VISIBLE);
             com.facebook.ads.AdView adView = new com.facebook.ads.AdView(activity, adID, com.facebook.ads.AdSize.BANNER_HEIGHT_50);
@@ -97,7 +140,7 @@ public class BannerAdLoad {
                 @Override
                 public void onError(Ad ad, AdError adError) {
                     AdsMasterClass.showAdTag(AdsLogTag.BannerAdLoad.name(), "loadFacebookBanner - failed " + adError.getErrorMessage());
-                    BannerAdFailed.showBannerAdOnFailed(activity, linearLayout, currentAd);
+                    BannerAdFailed.showBannerAdOnFailed(activity, linearLayout, currentAd, is_collapsible);
                 }
 
                 @Override
@@ -119,7 +162,7 @@ public class BannerAdLoad {
         }
     }
 
-    public static void loadFacebookNativeBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd) {
+    public static void loadFacebookNativeBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd, boolean is_collapsible) {
         if (adID != null && adID.trim().length() > 0) {
             NativeBannerAd nativeBannerAd = new NativeBannerAd(activity, adID);
             NativeAdListener nativeAdListener = new NativeAdListener() {
@@ -130,7 +173,7 @@ public class BannerAdLoad {
                 @Override
                 public void onError(Ad ad, AdError adError) {
                     AdsMasterClass.showAdTag(AdsLogTag.BannerAdLoad.name(), "loadFacebookNativeBanner - failed " + adError.getErrorMessage());
-                    BannerAdFailed.showBannerAdOnFailed(activity, linearLayout, currentAd);
+                    BannerAdFailed.showBannerAdOnFailed(activity, linearLayout, currentAd, is_collapsible);
                 }
 
                 @Override

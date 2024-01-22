@@ -218,15 +218,15 @@ public class AdsMasterClass {
     }
 
     // show banner
-    public static void showBannerAd(Activity activity, LinearLayout linearLayout) {
+    public static void showBannerAd(Activity activity, LinearLayout linearLayout, boolean is_collapsible) {
         if (getBannerAdShowValue(activity)) {
-            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, false);
+            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, false, is_collapsible);
         }
     }
 
-    public static void showExtraBannerAd(Activity activity, LinearLayout linearLayout) {
+    public static void showExtraBannerAd(Activity activity, LinearLayout linearLayout, boolean is_collapsible) {
         if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
-            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, true);
+            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, true, is_collapsible);
         }
     }
 

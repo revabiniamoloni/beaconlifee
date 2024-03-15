@@ -224,22 +224,10 @@ public class AdsMasterClass {
         }
     }
 
-    public static void showExtraBannerAd(Activity activity, LinearLayout linearLayout, boolean is_collapsible) {
-        if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
-            BannerAdLoad.loadSequenceBannerAd(activity, linearLayout, true, is_collapsible);
-        }
-    }
-
     // show native
     public static void showNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
         if (getNativeAdShowValue(activity)) {
             NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, false);
-        }
-    }
-
-    public static void showExtraNativeAd(Activity activity, RelativeLayout relativeLayout, LinearLayout linearLayout, String nativeAdSize) {
-        if (getAdsDataModel() != null && getAdsDataModel().getShow_native_second() == 1) {
-            NativeAdLoad.loadSequenceNativeAd(activity, relativeLayout, linearLayout, nativeAdSize, true);
         }
     }
 
@@ -545,25 +533,6 @@ public class AdsMasterClass {
         return "";
     }
 
-    public static String showQurekaImage(Activity activity) {
-        String adsSequence = AdsMasterClass.getAdsDataModel().getQureka_ads_image().trim();
-        String[] values = adsSequence.split("\\|");
-        if (values != null && values.length > 0) {
-            int pos = AdsPreference.getInt(activity, AdsConstant.QurekaAdShowSeqPos, 0);
-            if (pos < values.length) {
-                String ad = values[pos];
-                int nextPos = pos + 1;
-                AdsPreference.putInt(activity, AdsConstant.QurekaAdShowSeqPos, nextPos);
-                return ad;
-            } else {
-                String ad = values[0];
-                AdsPreference.putInt(activity, AdsConstant.QurekaAdShowSeqPos, 1);
-                return ad;
-            }
-        }
-        return "0";
-    }
-
     // get ads seq on fail
     public static String getNextFullScreenFailedAd(String adType) {
         if (getAdsDataModel() != null && getAdsDataModel().getInterstitial_show_fail_sequence() != null && getAdsDataModel().getInterstitial_show_fail_sequence().trim().length() > 0) {
@@ -755,25 +724,6 @@ public class AdsMasterClass {
         }
     }
 
-    /*----------------------------------AD Dialog-----------------------------*/
-
-    public static boolean getRateDialogShowValue(Activity activity) {
-        if (getAdsDataModel() != null && getAdsDataModel().getShow_rate_dialog_value() > 0) {
-            int pos = AdsPreference.getInt(activity, AdsConstant.RateDialogShowValuePos, 0);
-            int nextPos = pos + 1;
-            if (nextPos == getAdsDataModel().getShow_rate_dialog_value()) {
-                AdsPreference.putInt(activity, AdsConstant.RateDialogShowValuePos, 0);
-                return true;
-            }
-            if (nextPos > getAdsDataModel().getShow_rate_dialog_value()) {
-                nextPos = 0;
-            }
-            AdsPreference.putInt(activity, AdsConstant.RateDialogShowValuePos, nextPos);
-            return false;
-        }
-        return false;
-    }
-
     /*--------------------------------AD ID---------------------------------*/
 
     public static String getAdID(Context context, String adID, String key) {
@@ -879,10 +829,6 @@ public class AdsMasterClass {
                 adID = AdsMasterClass.getAdsDataModel().getGoogle_appopen_id();
             } else if (ad.equals(AllAdsType.adx.name())) {
                 adID = AdsMasterClass.getAdsDataModel().getAdx_appopen_id();
-            } else if (ad.equals(AllAdsType.adx2.name())) {
-                adID = AdsMasterClass.getAdsDataModel().getAdx2_appopen_id();
-            } else if (ad.equals(AllAdsType.ab.name())) {
-                adID = getAdsDataModel().getAppbaroda_appopen_id();
             }
             if (adID != null && adID.contains("|")) {
                 return getAdID(context, adID, AdsConstant.GoogleAppOpenIdSeqPos);
@@ -899,10 +845,6 @@ public class AdsMasterClass {
         if (ad.equals(AllAdsType.g.name())) {
             showSplashAppOpenAd(activity, intent, getGoogleAppOpenId(activity, ad), ad);
         } else if (ad.equals(AllAdsType.adx.name())) {
-            showSplashAppOpenAd(activity, intent, getGoogleAppOpenId(activity, ad), ad);
-        } else if (ad.equals(AllAdsType.adx2.name())) {
-            showSplashAppOpenAd(activity, intent, getGoogleAppOpenId(activity, ad), ad);
-        } else if (ad.equals(AllAdsType.ab.name())) {
             showSplashAppOpenAd(activity, intent, getGoogleAppOpenId(activity, ad), ad);
         } else if (ad.equals(AllAdsType.f.name())) {
             loadFacebookFullScreen(activity, intent, AdsMasterClass.getFacebookFullScreenId(activity, AdsMasterClass.getAdsDataModel().getFacebook_interstitial_id()));
@@ -1114,7 +1056,7 @@ public class AdsMasterClass {
         if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getQureka_url().trim().length() > 0) {
             Dialog dialog = new Dialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(AdsConstant.QUREKA_FULL_SCREEN_LIST[Integer.parseInt(AdsMasterClass.showQurekaImage(activity))]);
+            dialog.setContentView(R.layout.qureka_full_ad_0);
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCanceledOnTouchOutside(false);

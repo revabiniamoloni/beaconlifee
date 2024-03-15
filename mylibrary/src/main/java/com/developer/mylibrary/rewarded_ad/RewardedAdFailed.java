@@ -27,11 +27,7 @@ public class RewardedAdFailed {
             loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getGoogle_rewarded_id()));
         } else if (nextFailedAd.equals(AllAdsType.adx.name())) {
             loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getAdx_rewarded_id()));
-        } else if (nextFailedAd.equals(AllAdsType.adx2.name())) {
-            loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getAdx2_rewarded_id()));
-        } else if (nextFailedAd.equals(AllAdsType.ab.name())) {
-            loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_rewarded_id()));
-        } else {
+        }else {
             AdsMasterClass.dismissAdsProgressDialog();
             AdsMasterClass.onRewardEarnedListener.onRewardEarned(false);
         }

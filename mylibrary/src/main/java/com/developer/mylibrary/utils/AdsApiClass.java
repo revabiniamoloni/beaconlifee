@@ -102,8 +102,6 @@ public class AdsApiClass {
             AdsPreference.putInt(activity, AdsConstant.RewardedAdShowValuePos, 0);
             AdsPreference.putInt(activity, AdsConstant.RewardedAdShowSeqPos, 0);
             AdsPreference.putInt(activity, AdsConstant.FullScreenAdShowOnBackValuePos, 0);
-            AdsPreference.putInt(activity, AdsConstant.RateDialogShowValuePos, 0);
-            AdsPreference.putInt(activity, AdsConstant.QurekaAdShowSeqPos, 0);
 
             AdsPreference.putInt(activity, AdsConstant.GoogleFullScreenIdSeqPos, 0);
             AdsPreference.putInt(activity, AdsConstant.GoogleBannerIdSeqPos, 0);
@@ -215,9 +213,6 @@ public class AdsApiClass {
                         String show_tips_interstitial_value = ads_data.optString("show_tips_interstitial_value");
                         adsDataModel.setShow_tips_interstitial_value(show_tips_interstitial_value);
 
-                        int show_rate_dialog_value = ads_data.optInt("show_rate_dialog_value");
-                        adsDataModel.setShow_rate_dialog_value(show_rate_dialog_value);
-
                         String google_interstitial_id = ads_data.optString("google_interstitial_id");
                         adsDataModel.setGoogle_interstitial_id(google_interstitial_id);
 
@@ -248,36 +243,6 @@ public class AdsApiClass {
                         String adx_rewarded_id = ads_data.optString("adx_rewarded_id");
                         adsDataModel.setAdx_rewarded_id(adx_rewarded_id);
 
-                        String adx2_interstitial_id = ads_data.optString("adx2_interstitial_id");
-                        adsDataModel.setAdx2_interstitial_id(adx2_interstitial_id);
-
-                        String adx2_banner_id = ads_data.optString("adx2_banner_id");
-                        adsDataModel.setAdx2_banner_id(adx2_banner_id);
-
-                        String adx2_native_id = ads_data.optString("adx2_native_id");
-                        adsDataModel.setAdx2_native_id(adx2_native_id);
-
-                        String adx2_appopen_id = ads_data.optString("adx2_appopen_id");
-                        adsDataModel.setAdx2_appopen_id(adx2_appopen_id);
-
-                        String adx2_rewarded_id = ads_data.optString("adx2_rewarded_id");
-                        adsDataModel.setAdx2_rewarded_id(adx2_rewarded_id);
-
-                        String appbaroda_interstitial_id = ads_data.optString("appbaroda_interstitial_id");
-                        adsDataModel.setAppbaroda_interstitial_id(appbaroda_interstitial_id);
-
-                        String appbaroda_banner_id = ads_data.optString("appbaroda_banner_id");
-                        adsDataModel.setAppbaroda_banner_id(appbaroda_banner_id);
-
-                        String appbaroda_native_id = ads_data.optString("appbaroda_native_id");
-                        adsDataModel.setAppbaroda_native_id(appbaroda_native_id);
-
-                        String appbaroda_appopen_id = ads_data.optString("appbaroda_appopen_id");
-                        adsDataModel.setAppbaroda_appopen_id(appbaroda_appopen_id);
-
-                        String appbaroda_rewarded_id = ads_data.optString("appbaroda_rewarded_id");
-                        adsDataModel.setAppbaroda_rewarded_id(appbaroda_rewarded_id);
-
                         String facebook_interstitial_id = ads_data.optString("facebook_interstitial_id");
                         adsDataModel.setFacebook_interstitial_id(facebook_interstitial_id);
 
@@ -305,28 +270,16 @@ public class AdsApiClass {
                         String show_ads_on_back = ads_data.optString("show_ads_on_back");
                         adsDataModel.setShow_ads_on_back(show_ads_on_back);
 
-                        int show_native_second = ads_data.optInt("show_native_second");
-                        adsDataModel.setShow_native_second(show_native_second);
-
                         String native_bg_color = ads_data.optString("native_bg_color");
                         adsDataModel.setNative_bg_color(native_bg_color);
 
                         String native_button_color = ads_data.optString("native_button_color");
                         adsDataModel.setNative_button_color(native_button_color);
 
-                        String show_notification = ads_data.optString("show_notification");
-                        adsDataModel.setShow_notification(show_notification);
-
                         int show_log = ads_data.optInt("show_log");
                         adsDataModel.setShow_log(show_log);
 
                         // other ada data
-                        String qureka_ads_image = ads_data.optString("qureka_ads_image");
-                        adsDataModel.setQureka_ads_image(qureka_ads_image);
-
-                        int is_direct_qureka_open = ads_data.optInt("is_direct_qureka_open");
-                        adsDataModel.setIs_direct_qureka_open(is_direct_qureka_open);
-
                         int random_max_number = ads_data.optInt("random_max_number");
                         adsDataModel.setRandom_max_number(random_max_number);
 
@@ -339,14 +292,8 @@ public class AdsApiClass {
                         String upgrade_package_name = ads_data.optString("upgrade_package_name");
                         adsDataModel.setUpgrade_package_name(upgrade_package_name);
 
-                        int show_qureka_interstitial = ads_data.optInt("show_qureka_interstitial");
-                        adsDataModel.setShow_qureka_interstitial(show_qureka_interstitial);
-
                         int show_extra_features = ads_data.optInt("show_extra_features");
                         adsDataModel.setShow_extra_features(show_extra_features);
-
-                        int show_qureka_round = ads_data.optInt("show_qureka_round");
-                        adsDataModel.setShow_qureka_round(show_qureka_round);
 
                         String privacy_policy_url = ads_data.optString("privacy_policy_url");
                         adsDataModel.setPrivacy_policy_url(privacy_policy_url);

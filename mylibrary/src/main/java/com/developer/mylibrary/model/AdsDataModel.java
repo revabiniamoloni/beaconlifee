@@ -35,7 +35,6 @@ public class AdsDataModel {
 
     private int show_tips_screen = 0;
     private String show_tips_interstitial_value = "";
-    private int show_rate_dialog_value = 0;
 
     private String google_interstitial_id = "";
     private String google_banner_id = "";
@@ -49,18 +48,6 @@ public class AdsDataModel {
     private String adx_appopen_id = "";
     private String adx_rewarded_id = "";
 
-    private String adx2_interstitial_id = "";
-    private String adx2_banner_id = "";
-    private String adx2_native_id = "";
-    private String adx2_appopen_id = "";
-    private String adx2_rewarded_id = "";
-
-    private String appbaroda_interstitial_id = "";
-    private String appbaroda_banner_id = "";
-    private String appbaroda_native_id = "";
-    private String appbaroda_appopen_id = "";
-    private String appbaroda_rewarded_id = "";
-
     private String facebook_interstitial_id = "";
     private String facebook_banner_id = "";
     private String facebook_native_id = "";
@@ -73,23 +60,17 @@ public class AdsDataModel {
     private String qureka_url = "";
 
     private String show_ads_on_back = "";
-    private int show_native_second = 0;
     private String native_bg_color = "";
     private String native_button_color = "";
-    private String show_notification = "";
     private int show_log = 0;
 
     // other ads data
-    private String qureka_ads_image = "0";
-    private int is_direct_qureka_open = 0;
     private int random_max_number = 0;
     private int show_exit_dialog_native = 0;
     private int check_app_status = 0;
     private String upgrade_package_name = "";
-    private int show_qureka_interstitial = 0;
     private String privacy_policy_url = "";
     private int show_extra_features = 0;
-    private int show_qureka_round = 0;
 
     // extra flag in other ads data
     private String extra_flag_a = "";
@@ -301,14 +282,6 @@ public class AdsDataModel {
         this.show_tips_interstitial_value = show_tips_interstitial_value;
     }
 
-    public int getShow_rate_dialog_value() {
-        return show_rate_dialog_value;
-    }
-
-    public void setShow_rate_dialog_value(int show_rate_dialog_value) {
-        this.show_rate_dialog_value = show_rate_dialog_value;
-    }
-
     public String getGoogle_interstitial_id() {
         return google_interstitial_id;
     }
@@ -389,86 +362,6 @@ public class AdsDataModel {
         this.adx_rewarded_id = adx_rewarded_id;
     }
 
-    public String getAdx2_interstitial_id() {
-        return adx2_interstitial_id;
-    }
-
-    public void setAdx2_interstitial_id(String adx2_interstitial_id) {
-        this.adx2_interstitial_id = adx2_interstitial_id;
-    }
-
-    public String getAdx2_banner_id() {
-        return adx2_banner_id;
-    }
-
-    public void setAdx2_banner_id(String adx2_banner_id) {
-        this.adx2_banner_id = adx2_banner_id;
-    }
-
-    public String getAdx2_native_id() {
-        return adx2_native_id;
-    }
-
-    public void setAdx2_native_id(String adx2_native_id) {
-        this.adx2_native_id = adx2_native_id;
-    }
-
-    public String getAdx2_appopen_id() {
-        return adx2_appopen_id;
-    }
-
-    public void setAdx2_appopen_id(String adx2_appopen_id) {
-        this.adx2_appopen_id = adx2_appopen_id;
-    }
-
-    public String getAdx2_rewarded_id() {
-        return adx2_rewarded_id;
-    }
-
-    public void setAdx2_rewarded_id(String adx2_rewarded_id) {
-        this.adx2_rewarded_id = adx2_rewarded_id;
-    }
-
-    public String getAppbaroda_interstitial_id() {
-        return appbaroda_interstitial_id;
-    }
-
-    public void setAppbaroda_interstitial_id(String appbaroda_interstitial_id) {
-        this.appbaroda_interstitial_id = appbaroda_interstitial_id;
-    }
-
-    public String getAppbaroda_banner_id() {
-        return appbaroda_banner_id;
-    }
-
-    public void setAppbaroda_banner_id(String appbaroda_banner_id) {
-        this.appbaroda_banner_id = appbaroda_banner_id;
-    }
-
-    public String getAppbaroda_native_id() {
-        return appbaroda_native_id;
-    }
-
-    public void setAppbaroda_native_id(String appbaroda_native_id) {
-        this.appbaroda_native_id = appbaroda_native_id;
-    }
-
-    public String getAppbaroda_appopen_id() {
-        return appbaroda_appopen_id;
-    }
-
-    public void setAppbaroda_appopen_id(String appbaroda_appopen_id) {
-        this.appbaroda_appopen_id = appbaroda_appopen_id;
-    }
-
-    public String getAppbaroda_rewarded_id() {
-        return appbaroda_rewarded_id;
-    }
-
-    public void setAppbaroda_rewarded_id(String appbaroda_rewarded_id) {
-        this.appbaroda_rewarded_id = appbaroda_rewarded_id;
-    }
-
     public String getFacebook_interstitial_id() {
         return facebook_interstitial_id;
     }
@@ -541,14 +434,6 @@ public class AdsDataModel {
         this.show_ads_on_back = show_ads_on_back;
     }
 
-    public int getShow_native_second() {
-        return show_native_second;
-    }
-
-    public void setShow_native_second(int show_native_second) {
-        this.show_native_second = show_native_second;
-    }
-
     public String getNative_bg_color() {
         return native_bg_color;
     }
@@ -565,36 +450,12 @@ public class AdsDataModel {
         this.native_button_color = native_button_color;
     }
 
-    public String getShow_notification() {
-        return show_notification;
-    }
-
-    public void setShow_notification(String show_notification) {
-        this.show_notification = show_notification;
-    }
-
     public int getShow_log() {
         return show_log;
     }
 
     public void setShow_log(int show_log) {
         this.show_log = show_log;
-    }
-
-    public int getIs_direct_qureka_open() {
-        return is_direct_qureka_open;
-    }
-
-    public void setIs_direct_qureka_open(int is_direct_qureka_open) {
-        this.is_direct_qureka_open = is_direct_qureka_open;
-    }
-
-    public String getQureka_ads_image() {
-        return qureka_ads_image;
-    }
-
-    public void setQureka_ads_image(String qureka_ads_image) {
-        this.qureka_ads_image = qureka_ads_image;
     }
 
     public int getRandom_max_number() {
@@ -661,28 +522,12 @@ public class AdsDataModel {
         this.upgrade_package_name = upgrade_package_name;
     }
 
-    public int getShow_qureka_interstitial() {
-        return show_qureka_interstitial;
-    }
-
-    public void setShow_qureka_interstitial(int show_qureka_interstitial) {
-        this.show_qureka_interstitial = show_qureka_interstitial;
-    }
-
     public int getShow_extra_features() {
         return show_extra_features;
     }
 
     public void setShow_extra_features(int show_extra_features) {
         this.show_extra_features = show_extra_features;
-    }
-
-    public int getShow_qureka_round() {
-        return show_qureka_round;
-    }
-
-    public void setShow_qureka_round(int show_qureka_round) {
-        this.show_qureka_round = show_qureka_round;
     }
 
     public String getPrivacy_policy_url() {

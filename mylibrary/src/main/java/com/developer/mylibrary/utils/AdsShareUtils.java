@@ -53,16 +53,4 @@ public class AdsShareUtils {
             }
         }
     }
-
-    public static void showDirectQurekaAds(Activity activity, Intent intent) {
-        mActivity = activity;
-        mIntent = intent;
-        activity.startActivity(new Intent(activity, CustomChromeActivity.class));
-    }
-
-    public static void showQurekaOnFullscreenClose(Activity activity) {
-        if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getShow_qureka_interstitial() == 1) {
-            AdsShareUtils.showQurekaAds(activity);
-        }
-    }
 }

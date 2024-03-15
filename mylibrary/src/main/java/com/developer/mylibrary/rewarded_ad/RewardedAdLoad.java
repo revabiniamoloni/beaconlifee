@@ -27,10 +27,6 @@ public class RewardedAdLoad {
             loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getGoogle_rewarded_id()), nextAd);
         } else if (nextAd.equals(AllAdsType.adx.name())) {
             loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getAdx_rewarded_id()), nextAd);
-        } else if (nextAd.equals(AllAdsType.adx2.name())) {
-            loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getAdx2_rewarded_id()), nextAd);
-        } else if (nextAd.equals(AllAdsType.ab.name())) {
-            loadGoogleRewarded(activity, AdsMasterClass.getGoogleRewardedId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_rewarded_id()), nextAd);
         }
     }
 

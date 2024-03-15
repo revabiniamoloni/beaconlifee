@@ -48,10 +48,6 @@ public class BannerAdLoad {
                 loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getGoogle_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.adx.name())) {
                 loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAdx_banner_id()), nextAd, is_collapsible);
-            } else if (nextAd.equals(AllAdsType.adx2.name())) {
-                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAdx2_banner_id()), nextAd, is_collapsible);
-            } else if (nextAd.equals(AllAdsType.ab.name())) {
-                loadGoogleBanner(activity, linearLayout, AdsMasterClass.getGoogleBannerId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.f.name())) {
                 loadFacebookBanner(activity, linearLayout, AdsMasterClass.getFacebookBannerId(activity, AdsMasterClass.getAdsDataModel().getFacebook_banner_id()), nextAd, is_collapsible);
             } else if (nextAd.equals(AllAdsType.fnb.name())) {

@@ -45,7 +45,6 @@ import com.google.android.gms.ads.nativead.NativeAdView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class NativeAdFailed {
 
@@ -55,10 +54,6 @@ public class NativeAdFailed {
             loadGoogleNative(activity, relativeLayout, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getGoogle_native_id()), nativeAdSize);
         } else if (nextFailedAd.equals(AllAdsType.adx.name())) {
             loadGoogleNative(activity, relativeLayout, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getAdx_native_id()), nativeAdSize);
-        } else if (nextFailedAd.equals(AllAdsType.adx2.name())) {
-            loadGoogleNative(activity, relativeLayout, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getAdx2_native_id()), nativeAdSize);
-        } else if (nextFailedAd.equals(AllAdsType.ab.name())) {
-            loadGoogleNative(activity, relativeLayout, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_native_id()), nativeAdSize);
         } else if (nextFailedAd.equals(AllAdsType.f.name())) {
             loadFacebookNative(activity, relativeLayout, linearLayout, AdsMasterClass.getFacebookNativeId(activity, AdsMasterClass.getAdsDataModel().getFacebook_native_id()), nativeAdSize);
         } else if (nextFailedAd.equals(AllAdsType.a.name())) {
@@ -241,28 +236,17 @@ public class NativeAdFailed {
         linearLayout.addView(nativeAdLayout);
 
         ImageView iv_media_native = adView.findViewById(R.id.iv_media_native);
-        if (AdsMasterClass.getAdsDataModel() != null && !AdsMasterClass.getAdsDataModel().getQureka_ads_image().trim().isEmpty()) {
-            Integer[] qureka_image_list = new Integer[]{};
-            if (nativeAdSize.equals(NativeAdSize.EXTRA.name())) {
-                qureka_image_list = AdsConstant.QUREKA_NATIVE_MIDDLE_LIST;
-            } else if (nativeAdSize.equals(NativeAdSize.MINI.name())) {
-                qureka_image_list = AdsConstant.QUREKA_NATIVE_MINI_LIST;
-            } else if (nativeAdSize.equals(NativeAdSize.MIDDLE.name())) {
-                qureka_image_list = AdsConstant.QUREKA_NATIVE_MIDDLE_LIST;
-            } else {
-                qureka_image_list = AdsConstant.QUREKA_NATIVE_LARGE_LIST;
-            }
-            if (AdsMasterClass.getAdsDataModel().getQureka_ads_image().trim().equals("0")) {
-                iv_media_native.setImageResource(qureka_image_list[Integer.parseInt(AdsMasterClass.getAdsDataModel().getQureka_ads_image())]);
-            } else {
-                int randomValue = new Random().nextInt(qureka_image_list.length);
-                if (randomValue == 0) {
-                    iv_media_native.setImageResource(qureka_image_list[1]);
-                } else {
-                    iv_media_native.setImageResource(qureka_image_list[randomValue]);
-                }
-            }
+        Integer qureka_image_list;
+        if (nativeAdSize.equals(NativeAdSize.EXTRA.name())) {
+            qureka_image_list = R.drawable.ic_q_native_middle_0;
+        } else if (nativeAdSize.equals(NativeAdSize.MINI.name())) {
+            qureka_image_list = R.drawable.ic_q_banner_ad;
+        } else if (nativeAdSize.equals(NativeAdSize.MIDDLE.name())) {
+            qureka_image_list = R.drawable.ic_q_native_middle_0;
+        } else {
+            qureka_image_list = R.drawable.ic_q_native_0;
         }
+        iv_media_native.setImageResource(qureka_image_list);
 
         iv_media_native.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,7 +1,5 @@
 package com.developer.mylibrary.utils;
 
-import com.developer.mylibrary.R;
-
 public class AdsConstant {
     public static String FullScreenAdShowValuePos = "FullScreenAdShowValuePos";
     public static String FullScreenAdShowValuePosTips = "FullScreenAdShowValuePosTips";
@@ -17,8 +15,6 @@ public class AdsConstant {
     public static String RewardedAdShowValuePos = "RewardedAdShowValuePos";
     public static String RewardedAdShowSeqPos = "RewardedAdShowSeqPos";
     public static String FullScreenAdShowOnBackValuePos = "FullScreenAdShowOnBackValuePos";
-    public static String RateDialogShowValuePos = "RateDialogShowValuePos";
-    public static String QurekaAdShowSeqPos = "QurekaAdShowSeqPos";
 
     public static String GoogleFullScreenIdSeqPos = "GoogleFullScreenIdSeqPos";
     public static String GoogleBannerIdSeqPos = "GoogleBannerIdSeqPos";
@@ -37,16 +33,10 @@ public class AdsConstant {
     public static String FullScreenAdShowOnBackSeqPos = "FullScreenAdShowOnBackSeqPos";
     public static String FullScreenAdShowOnTipsSeqPos = "FullScreenAdShowOnTipsSeqPos";
 
-    public static Integer[] QUREKA_FULL_SCREEN_LIST = new Integer[]{R.layout.qureka_full_ad_0, R.layout.qureka_full_ad_1};
-    public static Integer[] QUREKA_NATIVE_LARGE_LIST = new Integer[]{R.drawable.ic_q_native_0, R.drawable.ic_q_native_3};
-    public static Integer[] QUREKA_NATIVE_MIDDLE_LIST = new Integer[]{R.drawable.ic_q_native_middle_0, R.drawable.ic_q_native_middle_4};
-    public static Integer[] QUREKA_NATIVE_MINI_LIST = new Integer[]{R.drawable.ic_q_banner_ad, R.drawable.ic_q_banner_ad};
-
     // put extra & preference key
     public static String BASE_URL = "BASE_URL";
     public static String TOKEN = "TOKEN";
     public static String RESPONSE = "RESPONSE";
-    public static String RATE_US = "RATE_US";
     public static String RATE_NOT_NOW = "RATE_NOT_NOW";
 
     public static String NATIVE_BG_COLOR = "NATIVE_BG_COLOR";

@@ -36,24 +36,16 @@ public class AdsDefaultValue {
         adsDataModel.setShow_tips_screen(0);
         adsDataModel.setShow_tips_interstitial_value("");
 
-        adsDataModel.setShow_rate_dialog_value(0);
-
         adsDataModel.setQureka_url("");
 
         adsDataModel.setShow_ads_on_back("");
-        adsDataModel.setShow_native_second(0);
-        adsDataModel.setShow_notification("");
         adsDataModel.setShow_log(0);
 
-        adsDataModel.setQureka_ads_image("0");
-        adsDataModel.setIs_direct_qureka_open(0);
         adsDataModel.setRandom_max_number(0);
         adsDataModel.setShow_exit_dialog_native(0);
         adsDataModel.setCheck_app_status(0);
         adsDataModel.setUpgrade_package_name("");
-        adsDataModel.setShow_qureka_interstitial(0);
         adsDataModel.setShow_extra_features(0);
-        adsDataModel.setShow_qureka_round(0);
 
         adsDataModel.setGoogle_appopen_id("ca-app-pub-3940256099942544/3419835294");
         adsDataModel.setGoogle_interstitial_id("/6499/example/interstitial");

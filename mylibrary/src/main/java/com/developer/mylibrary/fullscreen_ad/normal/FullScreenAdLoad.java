@@ -52,11 +52,7 @@ public class FullScreenAdLoad {
             loadGoogleFullScreen(activity, intent, AdsMasterClass.getGoogleFullScreenId(activity, AdsMasterClass.getAdsDataModel().getGoogle_interstitial_id()), nextAd);
         } else if (nextAd.equals(AllAdsType.adx.name())) {
             loadGoogleFullScreen(activity, intent, AdsMasterClass.getGoogleFullScreenId(activity, AdsMasterClass.getAdsDataModel().getAdx_interstitial_id()), nextAd);
-        } else if (nextAd.equals(AllAdsType.adx2.name())) {
-            loadGoogleFullScreen(activity, intent, AdsMasterClass.getGoogleFullScreenId(activity, AdsMasterClass.getAdsDataModel().getAdx2_interstitial_id()), nextAd);
-        } else if (nextAd.equals(AllAdsType.ab.name())) {
-            loadGoogleFullScreen(activity, intent, AdsMasterClass.getGoogleFullScreenId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_interstitial_id()), nextAd);
-        } else if (nextAd.equals(AllAdsType.f.name())) {
+        }  else if (nextAd.equals(AllAdsType.f.name())) {
             loadFacebookFullScreen(activity, intent, AdsMasterClass.getFacebookFullScreenId(activity, AdsMasterClass.getAdsDataModel().getFacebook_interstitial_id()), nextAd);
         } else if (nextAd.equals(AllAdsType.a.name())) {
             loadApplovinFullScreen(activity, intent, AdsMasterClass.getApplovinFullScreenId(activity, AdsMasterClass.getAdsDataModel().getApplovin_interstitial_id()), nextAd);
@@ -118,7 +114,6 @@ public class FullScreenAdLoad {
                             super.onAdDismissedFullScreenContent();
                             AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadGoogleFullScreen - dismiss");
                             AdsMasterClass.startNextActivity(activity, intent);
-                            AdsShareUtils.showQurekaOnFullscreenClose(activity);
                         }
 
                         @Override
@@ -177,7 +172,6 @@ public class FullScreenAdLoad {
                 public void onInterstitialDismissed(Ad ad) {
                     AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadFacebookFullScreen - dismiss");
                     AdsMasterClass.startNextActivity(activity, intent);
-                    AdsShareUtils.showQurekaOnFullscreenClose(activity);
                 }
 
                 @Override
@@ -273,7 +267,6 @@ public class FullScreenAdLoad {
                     AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadApplovinFullScreen - dismiss");
                     maxInterstitialAd.destroy();
                     AdsMasterClass.startNextActivity(activity, intent);
-                    AdsShareUtils.showQurekaOnFullscreenClose(activity);
                 }
 
                 @Override
@@ -306,58 +299,53 @@ public class FullScreenAdLoad {
     }
 
     private static void showQurekaFullAds(final Activity activity, final Intent intent) {
-        if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getIs_direct_qureka_open() != 1) {
-            if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getQureka_url().trim().length() > 0) {
-                AdsMasterClass.showAdProgressDialog(activity);
+        if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getQureka_url().trim().length() > 0) {
+            AdsMasterClass.showAdProgressDialog(activity);
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        AdsMasterClass.dismissAdsProgressDialog();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    AdsMasterClass.dismissAdsProgressDialog();
 
-                        Dialog dialog = new Dialog(activity);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(AdsConstant.QUREKA_FULL_SCREEN_LIST[Integer.parseInt(AdsMasterClass.showQurekaImage(activity))]);
-                        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        dialog.setCanceledOnTouchOutside(false);
-                        dialog.setCancelable(false);
+                    Dialog dialog = new Dialog(activity);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.qureka_full_ad_0);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.setCancelable(false);
 
-                        CardView card_click = dialog.findViewById(R.id.card_click);
-                        ImageView iv_close = dialog.findViewById(R.id.iv_close_qureka);
-                        TextView tv_ad = dialog.findViewById(R.id.tv_ad_qureka);
+                    CardView card_click = dialog.findViewById(R.id.card_click);
+                    ImageView iv_close = dialog.findViewById(R.id.iv_close_qureka);
+                    TextView tv_ad = dialog.findViewById(R.id.tv_ad_qureka);
 
-                        Animation slide_down = AnimationUtils.loadAnimation(activity, R.anim.slide_up);
-                        card_click.setAnimation(slide_down);
-                        Animation left_in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_left);
-                        tv_ad.setAnimation(left_in);
-                        Animation right_in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_right);
-                        iv_close.setAnimation(right_in);
+                    Animation slide_down = AnimationUtils.loadAnimation(activity, R.anim.slide_up);
+                    card_click.setAnimation(slide_down);
+                    Animation left_in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_left);
+                    tv_ad.setAnimation(left_in);
+                    Animation right_in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_right);
+                    iv_close.setAnimation(right_in);
 
-                        iv_close.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                AdsMasterClass.startNextActivity(activity, intent);
-                                AdsShareUtils.showQurekaOnFullscreenClose(activity);
-                            }
-                        });
+                    iv_close.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            AdsMasterClass.startNextActivity(activity, intent);
+                        }
+                    });
 
-                        card_click.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                AdsShareUtils.showQurekaAds(activity);
-                            }
-                        });
+                    card_click.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AdsShareUtils.showQurekaAds(activity);
+                        }
+                    });
 
-                        dialog.show();
-                    }
-                }, 500);
-            } else {
-                AdsMasterClass.startNextActivity(activity, intent);
-            }
+                    dialog.show();
+                }
+            }, 500);
         } else {
-            AdsShareUtils.showDirectQurekaAds(activity, intent);
+            AdsMasterClass.startNextActivity(activity, intent);
         }
     }
 }

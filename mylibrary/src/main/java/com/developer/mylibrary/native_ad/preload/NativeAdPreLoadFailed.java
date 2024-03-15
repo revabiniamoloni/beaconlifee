@@ -27,10 +27,6 @@ public class NativeAdPreLoadFailed {
             loadGoogleNative(activity, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getGoogle_native_id()), nativeAdSize);
         } else if (nextFailedAd.equals(AllAdsType.adx.name())) {
             loadGoogleNative(activity, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getAdx_native_id()), nativeAdSize);
-        } else if (nextFailedAd.equals(AllAdsType.adx2.name())) {
-            loadGoogleNative(activity, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getAdx2_native_id()), nativeAdSize);
-        } else if (nextFailedAd.equals(AllAdsType.ab.name())) {
-            loadGoogleNative(activity, linearLayout, AdsMasterClass.getGoogleNativeId(activity, AdsMasterClass.getAdsDataModel().getAppbaroda_native_id()), nativeAdSize);
         } else if (nextFailedAd.equals(AllAdsType.f.name())) {
             loadFacebookNative(activity, linearLayout, AdsMasterClass.getFacebookNativeId(activity, AdsMasterClass.getAdsDataModel().getFacebook_native_id()), nativeAdSize);
         } else if (nextFailedAd.equals(AllAdsType.a.name())) {

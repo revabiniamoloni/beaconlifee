@@ -22,7 +22,6 @@ public class AdsDefaultValueOnRemove {
         adsDataModel.setNative_preload(1);
         adsDataModel.setNative_list_show_value(5);
         adsDataModel.setShow_ads_on_back("1-2-3");
-        adsDataModel.setShow_native_second(1);
         adsDataModel.setShow_exit_dialog_native(1);
     }
 }

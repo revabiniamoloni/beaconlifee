@@ -30,7 +30,6 @@ import com.applovin.mediation.ads.MaxAppOpenAd;
 import com.developer.mylibrary.R;
 import com.developer.mylibrary.eum_class.AdsLogTag;
 import com.developer.mylibrary.eum_class.AllAdsType;
-import com.developer.mylibrary.utils.AdsConstant;
 import com.developer.mylibrary.utils.AdsMasterClass;
 import com.developer.mylibrary.utils.AdsShareUtils;
 import com.developer.mylibrary.utils.MyAdApplication;
@@ -134,7 +133,7 @@ public class AppOpenAdLoad implements Application.ActivityLifecycleCallbacks, Li
         if (AdsMasterClass.getAdsDataModel() != null && AdsMasterClass.getAdsDataModel().getQureka_url().trim().length() > 0) {
             Dialog dialog = new Dialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(AdsConstant.QUREKA_FULL_SCREEN_LIST[Integer.parseInt(AdsMasterClass.showQurekaImage(activity))]);
+            dialog.setContentView(R.layout.qureka_full_ad_0);
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCanceledOnTouchOutside(false);

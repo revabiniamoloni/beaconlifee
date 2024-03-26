@@ -32,8 +32,8 @@ import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.admanager.AdManagerAdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class BannerAdLoad {
     public static void loadGoogleBanner(Activity activity, LinearLayout linearLayout, String adID, String currentAd, boolean is_collapsible) {
         if (adID != null && adID.trim().length() > 0) {
             linearLayout.setVisibility(View.VISIBLE);
-            AdManagerAdView adView = new AdManagerAdView(activity);
+            AdView adView = new AdView(activity);
             adView.setAdUnitId(adID);
             if (is_collapsible) {
                 AdSize adSize = getAdBannerAdSize(activity, linearLayout);

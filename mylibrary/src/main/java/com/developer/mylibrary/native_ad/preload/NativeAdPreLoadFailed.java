@@ -13,9 +13,9 @@ import com.facebook.ads.NativeAdBase;
 import com.facebook.ads.NativeAdListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.VideoOptions;
-import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.nativead.NativeAd;
 
 public class NativeAdPreLoadFailed {
@@ -58,7 +58,7 @@ public class NativeAdPreLoadFailed {
                     super.onAdFailedToLoad(loadAdError);
                     AdsMasterClass.showAdTag(AdsLogTag.NativeAdPreLoadFailed.name(), "preloadGoogleNativeFailed - failed " + loadAdError.getMessage());
                 }
-            }).build().loadAd(new AdManagerAdRequest.Builder().build());
+            }).build().loadAd(new AdRequest.Builder().build());
         }
     }
 

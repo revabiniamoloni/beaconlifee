@@ -31,11 +31,11 @@ import com.developer.mylibrary.utils.AdsShareUtils;
 import com.facebook.ads.Ad;
 import com.facebook.ads.InterstitialAdListener;
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.admanager.AdManagerAdRequest;
-import com.google.android.gms.ads.admanager.AdManagerInterstitialAd;
-import com.google.android.gms.ads.admanager.AdManagerInterstitialAdLoadCallback;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class FullScreenAdLoad {
 
@@ -85,11 +85,11 @@ public class FullScreenAdLoad {
                 }
             }.start();
 
-            AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+            AdRequest adRequest = new AdRequest.Builder().build();
 
-            AdManagerInterstitialAd.load(activity, adID, adRequest, new AdManagerInterstitialAdLoadCallback() {
+            InterstitialAd.load(activity, adID, adRequest, new InterstitialAdLoadCallback() {
                 @Override
-                public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
+                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                     super.onAdLoaded(interstitialAd);
                     AdsMasterClass.showAdTag(AdsLogTag.FullScreenAdLoad.name(), "loadGoogleFullScreen - loaded");
 

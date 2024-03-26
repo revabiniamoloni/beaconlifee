@@ -7,10 +7,10 @@ import androidx.annotation.NonNull;
 import com.developer.mylibrary.eum_class.AdsLogTag;
 import com.developer.mylibrary.eum_class.AllAdsType;
 import com.developer.mylibrary.utils.AdsMasterClass;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
-import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
@@ -35,7 +35,7 @@ public class RewardedAdFailed {
 
     public static void loadGoogleRewarded(final Activity activity, String adID) {
         if (adID != null && adID.trim().length() > 0) {
-            AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+            AdRequest adRequest = new AdRequest.Builder().build();
             RewardedAd.load(activity, adID, adRequest, new RewardedAdLoadCallback() {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

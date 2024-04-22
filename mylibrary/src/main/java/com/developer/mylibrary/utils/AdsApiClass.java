@@ -279,7 +279,7 @@ public class AdsApiClass {
                         int show_log = ads_data.optInt("show_log");
                         adsDataModel.setShow_log(show_log);
 
-                        // other ada data
+                        // other ads data
                         int random_max_number = ads_data.optInt("random_max_number");
                         adsDataModel.setRandom_max_number(random_max_number);
 

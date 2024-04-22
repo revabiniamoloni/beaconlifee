@@ -6,12 +6,7 @@ import android.net.Uri;
 
 import androidx.browser.customtabs.CustomTabsIntent;
 
-import com.developer.mylibrary.activity.CustomChromeActivity;
-
 public class AdsShareUtils {
-
-    public static Activity mActivity;
-    public static Intent mIntent;
 
     public static void rateApp(Activity activity, String packageName) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
